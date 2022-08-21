@@ -38,6 +38,9 @@ namespace User_DB
 
             services.AddDbContext<BucketDBContext>(options =>
             options.UseNpgsql(Configuration.GetConnectionString("UserDB")));
+
+            services.AddScoped<IDL, DLRepo>();
+            services.AddScoped<IBL, BLRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

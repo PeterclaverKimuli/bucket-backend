@@ -3,15 +3,17 @@ using System;
 using DL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DL.Migrations
 {
     [DbContext(typeof(BucketDBContext))]
-    partial class BucketDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220821135421_BucketDBMigration1")]
+    partial class BucketDBMigration1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,12 +57,7 @@ namespace DL.Migrations
                     b.Property<int>("Name")
                         .HasColumnType("integer");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Bucketlists");
                 });
@@ -98,21 +95,7 @@ namespace DL.Migrations
 
             modelBuilder.Entity("Models.Bucketlist", b =>
                 {
-                    b.HasOne("Models.User", null)
-                        .WithMany("Bucketlists")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Models.Bucketlist", b =>
-                {
                     b.Navigation("BucketItems");
-                });
-
-            modelBuilder.Entity("Models.User", b =>
-                {
-                    b.Navigation("Bucketlists");
                 });
 #pragma warning restore 612, 618
         }

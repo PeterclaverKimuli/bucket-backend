@@ -8,6 +8,7 @@ namespace Models
     {
         public int Id { set; get; }
         public int Name { set; get; }
+        public int UserId { set; get; }
         public List<BucketItem> BucketItems { set; get; }
         public DateTime DateCreated { set; get; }
     }
